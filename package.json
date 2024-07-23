@@ -1,0 +1,24 @@
+{
+  "name": "koders-practice",
+  "version": "1.0.0",
+  "description": "This project is for only study porpuses and this practice was provided me for kodemia",
+  "main": "koders.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ErickVeraC/koders-practice.git"
+  },
+  "keywords": [
+    "node",
+    "javascript",
+    "json"
+  ],
+  "author": "ErickVeraC",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ErickVeraC/koders-practice/issues"
+  },
+  "homepage": "https://github.com/ErickVeraC/koders-practice#readme"
+}
