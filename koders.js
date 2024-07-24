@@ -28,8 +28,23 @@ function getKoders() {
 }
 
 // Funcion para agregar un koder a la lista
-function addKoder(koder) {
+function addKoder(name) {
   const koders = readKoders();
-  koders.push(koder);
+  koders.push(name);
   writeKoders(koders);
+  console.log(`Koder ${name} agregado`);
+}
+
+// Funcion para eliminar un koder de la lista
+function deleteKoder(name) {
+  const koders = readKoders();
+  koders = koders.filter((koder) => koder !== koder); //Decidi usar filter para eliminar el koder, creando un nuevo array sin el koder que queremos eliminar
+  writeKoders(koders); // Guardamos el nuevo array en el archivo con el koder eliminado
+  console.log(`Koder ${name} eliminado`);
+}
+
+// Funcion para eliminar todos los koders de la lista. Esta opcion mas que eliminar recomienza el archivo
+function deleteAllKoders() {
+  writeKoders([]); // Guardamos un array vacio en el archivo
+  console.log("Todos los koders eliminados");
 }
