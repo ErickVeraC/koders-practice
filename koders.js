@@ -22,4 +22,14 @@ function writeKoders(koders) {
   fs.writeFileSync(fullPath, JSON.stringify(koders, null, 2), "utf8");
 }
 
-// Funcion para agregar un koder al archivo
+// Funcion para listar todos los koders que hemos guardado
+function getKoders() {
+  return readKoders();
+}
+
+// Funcion para agregar un koder a la lista
+function addKoder(koder) {
+  const koders = readKoders();
+  koders.push(koder);
+  writeKoders(koders);
+}
