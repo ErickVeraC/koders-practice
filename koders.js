@@ -6,7 +6,7 @@ const path = require("node:path");
 
 // Definimos la ruta del archivo, con el metodo join de path
 // Path.join es un metodo que toma cualquier numero de argumentos los une y los convierte en una ruta absoluta
-const fullPath = path.join(__dirname, "koders.js"); // __dirname es una variable global que nos da la ruta del archivo actual
+const fullPath = path.join(__dirname, "koders.json"); // __dirname es una variable global que nos da la ruta del archivo actual
 
 // Funcion para verificar la existencia del archivo y leerlo
 function readKoders() {
@@ -24,7 +24,7 @@ function writeKoders(koders) {
 
 // Funcion para listar todos los koders que hemos guardado
 function getKoders() {
-  return readKoders();
+  return readKoders().forEach((koder) => console.log(koder));
 }
 
 // Funcion para agregar un koder a la lista
@@ -37,9 +37,9 @@ function addKoder(name) {
 
 // Funcion para eliminar un koder de la lista
 function deleteKoder(name) {
-  const koders = readKoders();
-  koders = koders.filter((koder) => koder !== koder); //Decidi usar filter para eliminar el koder, creando un nuevo array sin el koder que queremos eliminar
-  writeKoders(koders); // Guardamos el nuevo array en el archivo con el koder eliminado
+  let koders = readKoders(); // Cambiado a let para permitir reasignación
+  koders = koders.filter((koder) => koder !== name); // Filtra para mantener solo los koders que no coinciden con el nombre
+  writeKoders(koders); // Guarda el nuevo array en el archivo
   console.log(`Koder ${name} eliminado`);
 }
 
@@ -47,4 +47,33 @@ function deleteKoder(name) {
 function deleteAllKoders() {
   writeKoders([]); // Guardamos un array vacio en el archivo
   console.log("Todos los koders eliminados");
+}
+
+// Funcion que me ayudara a ejecutar las funciones anteriores en node
+const args = process.argv.slice(2); // Guardamos los argumentos que se pasen en la terminal
+const cli = args[0]; // Guardamos el primer argumento en una variable
+
+switch (cli) {
+  case "ls": // Listar todos los koders
+    getKoders();
+    break;
+  case "add": // Agregar un koder
+    addKoder(args[1]);
+    if (args[1] === undefined) {
+      console.log("Debes agregar un nombre");
+    }
+    break;
+  case "delete": // Eliminar un koder
+    deleteKoder(args[1]);
+    if (args[1] === undefined) {
+      console.log("Debes agregar un nombre para eliminarlo");
+    }
+    break;
+  case "delete-all": // Eliminar todos los koders
+    deleteAllKoders();
+    break;
+  default:
+    console.log(
+      "No reconozco el comando, por favor usa ls, add, delete o delete-all"
+    );
 }
