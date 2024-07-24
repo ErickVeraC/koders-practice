@@ -63,13 +63,13 @@ switch (cli) {
       console.log("Debes agregar un nombre");
     }
     break;
-  case "delete": // Eliminar un koder
+  case "rm": // Eliminar un koder
     deleteKoder(args[1]);
     if (args[1] === undefined) {
       console.log("Debes agregar un nombre para eliminarlo");
     }
     break;
-  case "delete-all": // Eliminar todos los koders
+  case "reset": // Eliminar todos los koders
     deleteAllKoders();
     break;
   default:
